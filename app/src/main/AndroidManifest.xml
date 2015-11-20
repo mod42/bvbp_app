@@ -79,27 +79,6 @@
             android:theme="@android:style/Theme.Holo.Light"
             android:windowSoftInputMode="stateVisible" >
         </activity>
-        <activity
-            android:name=".enterprise.EnterpriseBrowser"
-            android:exported="false"
-            android:icon="@drawable/browser"
-            android:label="Enterprise Browser"
-            android:theme="@android:style/Theme.Holo.Light" >
-            <intent-filter>
-                <action android:name="com.l7tech.msso.service.action.LAUNCH_ENTERPRISE_BROWSER" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".enterprise.EnterpriseBrowserApp"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
-            <intent-filter>
-                <action android:name="com.l7tech.msso.service.action.RENDER_WEBVIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
         <service
             android:name="com.l7tech.msso.service.MssoService"

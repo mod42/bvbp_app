@@ -56,7 +56,7 @@ public class CustomLogonActivity extends AbstractLogonActivity {
         //Enable touch less logon for QRCode, NFC and BlueToothLe
         enableQRCode();
         enableNFC();
-        enableBle();
+        //enableBle();
 
         //Retrieve the Login providers View (Social Login and QRCode)
         //There is no View for NFC and BLE
