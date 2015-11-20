@@ -47,7 +47,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ExampleActivity extends FragmentActivity implements JsonDownloaderFragment.UserActivity {
+public class ExampleActivity extends FragmentActivity {
     private static final String TAG = "insure.CA";
 
 
@@ -70,8 +70,7 @@ public class ExampleActivity extends FragmentActivity implements JsonDownloaderF
     ProgressBar progressBar;
     static boolean usedMobileSso = false;
 
-    @Override
-    public MobileSso mobileSso() {
+    private MobileSso mobileSso() {
         //Initialize the MobileSso with the configuration defined under /assets/msso_config.json
         MobileSso mobileSso = MobileSsoFactory.getInstance(this);
         usedMobileSso = true;
@@ -102,29 +101,6 @@ public class ExampleActivity extends FragmentActivity implements JsonDownloaderF
             //progressBar.setVisibility(savedInstanceState.getInt(STATE_PROGRESS_VISIBILITY));
         }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        JsonDownloaderFragment httpFragment = (JsonDownloaderFragment) fragmentManager.findFragmentByTag("httpResponseFragment");
-        if (httpFragment == null) {
-            httpFragment = new JsonDownloaderFragment();
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.add(httpFragment, "httpResponseFragment");
-            ft.commit();
-        }
-
-        //final Button listButton = (Button) findViewById(R.id.listItemsButton);
-        final JsonDownloaderFragment finalHttpFragment = httpFragment;
- /*       listButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayAdapter a = ((ArrayAdapter) itemList.getAdapter());
-                if (a != null) {
-                    a.clear();
-                    a.notifyDataSetChanged();
-                }
-                finalHttpFragment.downloadJson();
-            }
-        });
-*/
         final Button logOutButton = (Button) findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,9 +110,7 @@ public class ExampleActivity extends FragmentActivity implements JsonDownloaderF
         });
         registerForContextMenu(logOutButton);
 
-        initAppEndpoint();
-
-    }
+     }
 
     public void listClaimsHistory(View v)
     {
@@ -265,90 +239,6 @@ public class ExampleActivity extends FragmentActivity implements JsonDownloaderF
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
             processIntent(getIntent());
         }
-
-        if (mobileSso().isLogin()) {
- /*           mobileSso().startBleSessionSharing(new BluetoothLePeripheralCallback() {
-
-                @Override
-                public void onStatusUpdate(int state) {
-                    switch (state) {
-                        case BluetoothLePeripheralCallback.BLE_STATE_CONNECTED:
-                            Log.d(TAG, "BLE Client Connected");
-                            break;
-                        case BluetoothLePeripheralCallback.BLE_STATE_DISCONNECTED:
-                            Log.d(TAG, "BLE Client Disconnected");
-                            break;
-                        case BluetoothLePeripheralCallback.BLE_STATE_STARTED:
-                            Log.d(TAG, "BLE peripheral mode started");
-                            break;
-                        case BluetoothLePeripheralCallback.BLE_STATE_STOPPED:
-                            Log.d(TAG, "BLE peripheral mode stopped");
-                            break;
-                        case BluetoothLePeripheralCallback.BLE_STATE_SESSION_AUTHORIZED:
-                            Log.d(TAG, "BLE session authorized");
-                            break;
-                    }
-                }
-
-                @Override
-                public void onError(int errorCode) {
-                    String message = null;
-                    switch (errorCode) {
-                        case BluetoothLePeripheralCallback.BLE_ERROR_ADVERTISE_FAILED:
-                            message = "Advertise failed";
-                            break;
-                        case BluetoothLePeripheralCallback.BLE_ERROR_AUTH_FAILED:
-                            message = "Auth failed";
-                            break;
-                        case BluetoothLePeripheralCallback.BLE_ERROR_CENTRAL_UNSUBSCRIBED:
-                            message = "Central UnSubscribed";
-                            break;
-                        case BluetoothLePeripheralCallback.BLE_ERROR_PERIPHERAL_MODE_NOT_SUPPORTED:
-                            message = "Peripheral mode not supported";
-                            break;
-                        case BluetoothLe.BLE_ERROR_DISABLED:
-                            message = "Bluetooth Disabled";
-                            break;
-                        case BluetoothLe.BLE_ERROR_INVALID_UUID:
-                            message = "Invalid UUID";
-                            break;
-                        case BluetoothLe.BLE_ERROR_NOT_SUPPORTED:
-                            message = "Bluetooth not supported";
-                            break;
-                        case BluetoothLe.BLE_ERROR_SESSION_SHARING_NOT_SUPPORTED:
-                            message = "Session sharing not supported";
-                            break;
-                        default:
-                            message = Integer.toString(errorCode);
-
-                    }
-                    showMessage("BLE Error:" + message, Toast.LENGTH_SHORT);
-                }
-
-                @Override
-                public void onConsentRequested(final String deviceName, final BluetoothLeConsentHandler handler) {
-                    ExampleActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(ExampleActivity.this);
-
-                            builder.setMessage("Do you want to grant session to " + deviceName + "?").
-                                    setPositiveButton("Grant", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            handler.proceed();
-                                        }
-                                    }).setNegativeButton("Reject", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    handler.cancel();
-                                }
-                            }).show();
-                        }
-                    });
-                }
-            });*/
-        }
     }
 
     @Override
@@ -362,7 +252,7 @@ public class ExampleActivity extends FragmentActivity implements JsonDownloaderF
         super.onDestroy();
     }
 
-    @Override
+
     public void showMessage(final String message, final int toastLength) {
         runOnUiThread(new Runnable() {
             @Override
@@ -373,64 +263,9 @@ public class ExampleActivity extends FragmentActivity implements JsonDownloaderF
     }
 
     @Override
-    public URI getJsonDownloadUri() {
-        return productListDownloadUri;
-    }
-
-    @Override
-    public void setProgressVisibility(int visibility) {
-        progressBar.setVisibility(visibility);
-    }
-
-    @Override
-    public void setDownloadedJson(String json) {
-        try {
-            List<Object> objects;
-            if (json == null || json.trim().length() < 1) {
-                objects = Collections.emptyList();
-            } else {
-                objects = parseProductListJson(json);
-            }
-            itemList.setAdapter(new ArrayAdapter<Object>(this, R.layout.listitem, objects));
-
-        } catch (JSONException e) {
-            showMessage("Error: " + e.getMessage(), Toast.LENGTH_LONG);
-        }
-    }
-
-    private static List<Object> parseProductListJson(String json) throws JSONException {
-        try {
-            List<Object> objects = new ArrayList<Object>();
-            //JSONArray parsed = (JSONArray) new JSONTokener(json).nextValue();
-            JSONObject parsed = (JSONObject) new JSONTokener(json).nextValue();
-
-            for (int i = 0; i < parsed.length(); ++i) {
-                //JSONObject item = parsed.getJSONObject(i);
-                JSONObject policy = (JSONObject) parsed.get("policy");
-
-                Integer id = new Integer( (String)policy.get("claimnumber"));
-                String name = (String) policy.get("details");
-                objects.add(new Pair<Integer, String>(id, name) {
-                    @Override
-                    public String toString() {
-                        return first + "  " + second;
-                    }
-                });
-            }
-            return objects;
-        } catch (ClassCastException e) {
-            throw (JSONException) new JSONException("Response JSON was not in the expected format").initCause(e);
-        }
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case R.id.entBrowser:
-                mobileSso();
-                startEnterpriseBrowser();
-                return true;
             case R.id.scanQRCode:
                 IntentIntegrator intentIntegrator = new IntentIntegrator(this);
                 intentIntegrator.initiateScan();
@@ -442,41 +277,6 @@ public class ExampleActivity extends FragmentActivity implements JsonDownloaderF
                 return super.onOptionsItemSelected(item);
         }
         return true;
-    }
-
-    private void startEnterpriseBrowser() {
-
-        EnterpriseApp.getInstance().processEnterpriseApp(ExampleActivity.this, new ResultReceiver(null) {
-
-            @Override
-            protected void onReceiveResult(int resultCode, Bundle resultData) {
-                if (resultCode != MssoIntents.RESULT_CODE_SUCCESS) {
-                    String message = resultData.getString(MssoIntents.RESULT_ERROR_MESSAGE);
-                    if (message == null) {
-                        message = "<Unknown error>";
-                    }
-                    showMessage(message, Toast.LENGTH_LONG);
-                }
-            }
-        }, ExampleApp.class);
-    }
-
-    /**
-     * Initialize the Application Endpoint
-     */
-    private void initAppEndpoint() {
-        if (productListDownloadUri == null || userInfoUri == null) {
-            MobileSso mobileSso = mobileSso();
-            userInfoUri = mobileSso.getURI(mobileSso.getPrefix()+"/openid/connect/v1/userinfo");
-            //productListDownloadUri = mobileSso.getURI(mobileSso.getPrefix()+"/protected/resource/products?operation=listProducts");
-
-            try {
-                productListDownloadUri = new URI("http://explore.apim.ca:8080/insurance/claimshistory?username=aranw@test.com");
-
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     @Override
