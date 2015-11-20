@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Created by awitrisna on 2013-11-15.
+  ~ Copyright (c) 2013 CA Technologies. All rights reserved.
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false"
+          android:drawable="@drawable/enterprise_disable" />
+    <item android:drawable="@drawable/enterprise_enable" />
+</selector><!-- From: file:/C:/Ablage/Software/L7/AndroidSDKTutorial/MSSO%20for%20Android%20for%20Combined%20Image_8.3/MAG_2.4_ExampleA/appa/app/src/main/res/drawable/enterprise.xml -->

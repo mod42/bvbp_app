@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by awitrisna on 2013-11-15.
+  ~ Copyright (c) 2013 CA Technologies. All rights reserved.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/mainLayout"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+
+    <TextView
+            android:id="@+id/topLabel"
+            android:layout_weight="0"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="List Items to Begin"
+            />
+
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            />
+
+    <ListView
+            android:id="@+id/itemList"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
+            />
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="0"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <Button
+                android:id="@+id/listItemsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="List Items"
+                />
+
+        <Button
+                android:id="@+id/logOutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Log Out"
+                />
+    </LinearLayout>
+</LinearLayout>
+
+<!-- From: file:/C:/Ablage/Software/L7/AndroidSDKTutorial/MSSO%20for%20Android%20for%20Combined%20Image_8.3/MAG_2.4_ExampleA/appa/app/src/main/res/layout/main.xml -->

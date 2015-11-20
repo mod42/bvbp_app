@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="mobile-sso-sdk-2.4.0.962">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/mobile-sso-sdk-2.4.0.962.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

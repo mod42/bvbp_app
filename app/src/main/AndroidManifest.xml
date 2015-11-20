@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ~ Copyright (c) 2013 CA Technologies. All rights reserved. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.l7tech.examplea"
+    android:sharedUserId="com.l7tech.example.shared"
+    android:sharedUserLabel="@string/sharedUserLabel"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Enable for NFC Touchless login -->
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name=".ExampleActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:windowSoftInputMode="adjustPan" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="application/vnd.com.l7tech.msso.beam" />
+            </intent-filter>
+        </activity>
+
+        <!--
+        <activity android:name="com.l7tech.msso.gui.LogonActivity"
+                  android:theme="@android:style/Theme.Holo.Light.Dialog"
+                  android:label="Log On to Example App"
+                  android:windowSoftInputMode="stateVisible"
+                  android:exported="false">
+            <intent-filter>
+                <action android:name="com.l7tech.msso.service.action.OBTAIN_CREDENTIALS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        -->
+
+        <activity
+            android:name=".logon.CustomLogonActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Holo.Dialog" >
+            <intent-filter>
+                <action android:name="com.l7tech.msso.service.action.OBTAIN_CREDENTIALS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.l7tech.msso.gui.SocialLoginActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:windowSoftInputMode="stateVisible" >
+        </activity>
+        <activity
+            android:name=".enterprise.EnterpriseBrowser"
+            android:exported="false"
+            android:icon="@drawable/browser"
+            android:label="Enterprise Browser"
+            android:theme="@android:style/Theme.Holo.Light" >
+            <intent-filter>
+                <action android:name="com.l7tech.msso.service.action.LAUNCH_ENTERPRISE_BROWSER" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".enterprise.EnterpriseBrowserApp"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
+            <intent-filter>
+                <action android:name="com.l7tech.msso.service.action.RENDER_WEBVIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.l7tech.msso.service.MssoService"
+            android:exported="false" >
+        </service>
+
+        <activity android:name=".ListClaims"
+            android:theme="@android:style/Theme.Holo.Light" >
+        </activity>
+        <activity android:name=".ClaimDetails"
+            android:theme="@android:style/Theme.Holo.Light" >
+        </activity>
+    </application>
+
+</manifest>

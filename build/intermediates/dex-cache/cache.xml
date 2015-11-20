@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/milst0808/Documents/Ablage/Software/L7/AndroidSDKTutorial/MSSO for Android for Combined Image_8.3/MAG_2.4_ExampleA/appa/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/milst0808/Documents/Ablage/Software/L7/AndroidSDKTutorial/MSSO for Android for Combined Image_8.3/MAG_2.4_ExampleA/appa/app/build/intermediates/pre-dexed/debug/classes-5c55b3d937fc270c0448d0bed9aaafc8d96194a6.jar" />
+    </item>
+
+</items>

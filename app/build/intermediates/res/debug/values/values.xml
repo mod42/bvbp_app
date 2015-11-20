@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/Ablage/Software/L7/AndroidSDKTutorial/MSSO%20for%20Android%20for%20Combined%20Image_8.3/MAG_2.4_ExampleA/appa/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">ExampleA</string>
+    <string name="app_settings">Settings</string>
+    <string name="back">back</string>
+    <string name="clearUsers">Clear Users</string>
+    <string name="entBrowser">Enterprise Browser</string>
+    <string name="forward">forward</string>
+    <string name="overflow">overflow</string>
+    <string name="pref_location">Use Location</string>
+    <string name="pref_phone">Use Phone</string>
+    <string name="scanQRCode">Scan QR Code</string>
+    <string name="sharedUserLabel">Example Org</string>
+</resources>

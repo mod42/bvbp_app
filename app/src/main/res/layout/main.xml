@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Created by awitrisna on 2013-11-15.
+  ~ Copyright (c) 2013 CA Technologies. All rights reserved.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/mainLayout"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+    android:weightSum="1">
+
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="291dp"
+        android:layout_height="460dp"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/insureca" />
+
+        <Space
+            android:layout_width="20px"
+            android:layout_height="20px" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="88dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="@string/hadAccident"
+                android:id="@+id/button"
+                android:minWidth="180dp"
+                android:singleLine="false"
+                android:background="@drawable/button_red"
+                android:textColor="#fefefe" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:layout_weight="0.16">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="@string/myDetails"
+                android:id="@+id/button3"
+                android:minWidth="180dp"
+                android:background="@drawable/button_white"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="106dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:text="@string/showClaims"
+                android:id="@+id/button2"
+                android:minWidth="180dp"
+                android:onClick="listClaimsHistory"
+                android:background="@drawable/button_white"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+        android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <Button
+                android:id="@+id/logOutButton"
+                android:layout_width="311dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.08"
+                android:text="Log Out"
+                />
+    </LinearLayout>
+
+</LinearLayout>
+
